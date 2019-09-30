@@ -23,5 +23,11 @@ Found $(find ~/Pictures -type f|wc -l) files in the Pictures directory.
 The Pictures directory uses $(du -sh ~/Pictures|awk '{print $1}') space on the disk.
 EOF
 
-#retrieve and unpack tarfile into pictures directory
-cd Downloads && tar -xvzf pics.tgz -C /home/vubui200396565/Pictures/picslab2
+#VUBUI 200396565 - LAB2 - .tgz files
+# Download pics.tgz
+test -f ~/Pictures/pics.tgz || wget -q -O ~/Pictures/pics.tgz https://zonzorp.net/pics.tgz
+
+#retrieve  - unpack tarfile into pictures directory and delete pics.tgz
+test -f ~/Pictures/pics.tgz && cd Pictures && mkdir picslab2 && tar -xvzf pics.tgz -C /home/vubui200396565/Pictures/picslab2 && rm pics.tgz
+
+
