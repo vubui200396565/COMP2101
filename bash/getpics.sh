@@ -24,4 +24,4 @@ The Pictures directory uses $(du -sh ~/Pictures|awk '{print $1}') space on the d
 EOF
 
 #retrieve and unpack tarfile into pictures directory
-tar-C /home/vubui200396565/pictures -zxvf pics.tgz
+tar zxvf pics.tgz -C /home/vubui200396565/pictures
