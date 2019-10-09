@@ -18,7 +18,7 @@ read -p "hello, enter your password, please: " pass
 #task 2
 if [ $pass != $referenceString ];then
 
-  echo "Sorry you put a wrong password"
+  echo "oh oh oh, wrong wrong one"
 
 fi
 
