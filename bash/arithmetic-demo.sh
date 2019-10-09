@@ -63,6 +63,8 @@ $firstnumber * $secondnumber is $multiplication
 DIVISION OF TWO NUMBERS
 $firstnumber / by $secondnumber is $dividend
 
+- More precisely, it is $fpdividend
+
 
 MODULUS OF TWO NUMBERS
 $firstnumber % $secondnumber gives $dividend with the number $modulus
@@ -71,13 +73,6 @@ $firstnumber % $secondnumber gives $dividend with the number $modulus
 POWER METHOD
 $firstnumber power of the $secondnumber is $power
 
-  - More precisely, it is $fpdividend
+
 
 EOF
-
-
-
-
-
-
-
