@@ -27,5 +27,5 @@ sum=$(( die1 + die2 ))
 avarage=$(($sum/2))
 
 # display the results
-echo "Rolled $die1, $die2 for is $sum"
+echo "Rolled $die1, $die2 for sum is $sum"
 echo "Rolled $die1, $die2, and an avarage is $avarage"
