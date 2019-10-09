@@ -19,9 +19,13 @@ sides=6
 bias=1
 die1=$(( RANDOM % sides + bias))
 die2=$(( RANDOM % sides + bias ))
+
 # sum up the rolls
 sum=$(( die1 + die2 ))
+
+#avarage
 avarage=$(($sum/2))
+
 # display the results
-echo "Rolled $die1, $die2 for a $sum"
+echo "Rolled $die1, $die2 for is $sum"
 echo "Rolled $die1, $die2, and an avarage is $avarage"
