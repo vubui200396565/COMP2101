@@ -12,7 +12,7 @@
 
 read -p "hola, let guess the password:" clientinput
 
-rightpass="password"
+rightpass="nothing"
 
 i=1
 
@@ -48,6 +48,6 @@ else
 
 done
 
-echo "HAHA, password is $rightpass"
+echo "HAHA, now you know password is $rightpass"
 
 
