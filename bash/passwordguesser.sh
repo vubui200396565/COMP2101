@@ -6,31 +6,48 @@
 # TASK 3: Improve it by giving them 3 tries to get it right before failing (test 3 times but only if necessary)
 #           *** Do not use the exit command
 
-myString="TestString"
-referenceString="password"
-
-[ $myString = $referenceString ] && echo "You guessed the password!" || echo "The password eludes you..."
 
 
-#task 1
-read -p "hello, enter your password, please: " pass
 
-#task 2
-if [ $pass != $referenceString ];then
 
-  echo "oh oh oh, wrong wrong one"
+read -p "hola, let guess the password:" clientinput
 
-fi
+rightpass="password"
 
-#task 3
 i=1
 
-while [ $i -le 3 ] && [ $pass != $referenceString ];
+while [ $i -lt 3 ]
 
 do
 
-  read -p "Please enter again your password ($i retry) :" password
+  if [ $clientinput != $rightpass ]
 
-  i=$((i+1))
+  then
+
+  {
+
+    echo "huhu! let try again"
+
+    read -p "Guess the password again:" clientinput
+
+  }
+
+else
+
+    {
+
+      echo "RIGHT"
+
+      break
+
+    }
+
+  fi
+
+  i=$(( $i + 1 ))
 
 done
+
+echo "HAHA, password is $rightpass"
+
+

@@ -12,69 +12,38 @@
 ###############
 # Variables   #
 ###############
-title="Overlord"
-myname="dennis"
-hostname=$(hostname)
+
+#vu bui 200396565  #
 
 ###############
+
+title="Overlord"
+
+#myname="dennis"
+
+myname=$USER
+
+hostname=$(hostname)
+
+time=$(date +"%H:%M %p")
+
+day=$(date +%a)
+
+
+
+###############
+
 # Main        #
+
 ###############
 
 cat <<EOF
 
 Welcome to planet $hostname, "$title $myname!"
 
+It is $time on $day
+
 EOF
 
 
 
-
-
-#################
-
-# Variables #
-
-#################
-
-myname=$USER
-
-
-
-########
-
-# Main #
-
-########
-###############
-
-# Variables   #
-
-###############
-
-titles=("Operator" "Professor" "Programmer" "Administrator" "User" "Student" "Human")
-
-title_index=$((RANDOM % ${#titles[@]}))
-
-title=${titles[$title_index]}
-
-myname="dennis"
-
-hostname=$(hostname)
-
-
-
-###############
-
-# Main        #
-
-###############
-
-#date and time as per HH:MM formatted
-
-date_time=$(date +"%H:%M %p")
-
-
-
-final_res="Welcome to planet $hostname,$title $myname It is a $date_time on weekday"
-
-cowsay $final_res
