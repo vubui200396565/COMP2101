@@ -19,7 +19,7 @@
 
 title="Overlord"
 
-#myname="dennis"
+lordname="dennis"
 
 myname=$USER
 
@@ -39,7 +39,7 @@ day=$(date +%a)
 
 cat <<EOF
 
-Welcome to planet $hostname, "$title $myname!"
+Welcome to planet $hostname, "$title $lordname!"
 
 It is $time on $day
 
