@@ -29,52 +29,86 @@
 # finding external information relies on curl being installed and relies on live internet connection
 # awk is used to extract only the data we want displayed from the commands which produce extra data
 # this command is ugly done this way, so generating the output data into variables is recommended to make the script more readable.
-# e.g. 
+# e.g.
 #   interface_name=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
 
 
 # Task for all
 
-hostName=$(hostname)
+hostname=$(hostname)
 
-lanAddress=$(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|(awk '/inet /{gsub(/\/.*/,"");print $2}'))
 
-lanHostname=$(getent hosts | grep -w 127.0.1.1 | awk '{print $2}')
 
-routerAddress=$(ip route | grep -w via | awk '{print $3}')
+lanaddress_full=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
 
-routerHostname=$(getent hosts `ip route | grep -w via | awk '{print $3}'` | awk '{print$2}')
+lanaddress=$(ip a s $lanaddress_full | awk '/inet /{gsub(/\/.*/,"");print $2}')
 
-networkNumber=$(cut -d/ -f1 <<<$(ip route list dev enp0s3 scope link | cut -d' ' -f1 | grep -w 10))
 
-networkName=$(getent networks $(cut -d/ -f1 <<<$(ip route list dev enp0s3 scope link | cut -d ' ' -f 1)) | awk '{print $1}')
 
-externalIP=$(curl -s icanhazip.com)
+lanhost2=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
 
-externalName=$(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
+lanhost1=$(ip a s $lanhost2)
+
+lanhostname=$(getent hosts $lanhost1 | awk 'NR==3{print $2}')
+
+
+
+externalip=$(curl -s icanhazip.com)
+
+
+
+externalname_full=$(curl -s icanhazip.com)
+
+externalname=$(getent hosts $externalname_full | awk '{print $2}')
 
 
 
 cat <<EOF
 
-Hostname        : $hostName
+Hostname        : $hostname
 
-LAN Address     : $lanAddress
+LAN Address     : $lanaddress
 
-LAN Hostname    : $lanHostname
+LAN Hostname    : $lanhostname
 
-Router Address  : $routerAddress
+External IP     : $externalip
 
-Router Hostname : $routerHostname
-
-Network Number  : $networkNumber
-
-Network Name    : $networkName
-
-External IP     : $externalIP
-
-External Name   : $externalName
+External Name   : $externalname
 
 EOF
 
 
+
+#adding router address and router name
+
+routeripaddress=$(ip r | grep default | awk '{print $3}')
+
+routername=$(getent hosts | awk 'NR==4{print $2}')
+
+
+
+cat <<EOF
+
+Route IP : $routeripaddress
+
+Router Name : $routername
+
+EOF
+
+
+
+#adding network address and router Name
+
+networkaddress=$(ip r | awk 'NR==3{print $1}')
+
+networkname=$(getent networks | grep 192 | awk '{print $1}')
+
+
+
+cat <<EOF
+
+Network IP : $networkaddress
+
+Network Name : $networkname
+
+EOF
